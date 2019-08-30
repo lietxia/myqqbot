@@ -19,4 +19,4 @@ async def handle_request(context):
     return {"approve": True}
 
 
-bot.run(host="127.0.0.1", port=12345)
+bot.run(host="127.0.0.1", port=8080)

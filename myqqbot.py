@@ -21,5 +21,5 @@ def handle_request(context):
     return {"approve": True}  # 同意所有加群、加好友请求
 
 
-bot.run(host="127.0.0.1", port=8080)
+bot.run(host="0.0.0.0", port=8080)
 

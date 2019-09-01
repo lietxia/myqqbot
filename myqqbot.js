@@ -3,8 +3,9 @@ const CQHttp = require('cqhttp');
 const bot = new CQHttp({ apiRoot: 'http://usf.lietxia.bid:5700' });
 
 bot.on('message', context => {
-    let return_text = '';
     try {
+        let return_text = '';
+        
         if (context.raw_message.startsWith('你好')) {
             return_text = '哈喽～';
         }
@@ -19,10 +20,8 @@ bot.on('message', context => {
             var second = date.getSeconds();
             return_text = year + '年' + month + '月' + day + '日 ' + hour + ':' + minute + ':' + second;
         }
-
+        bot('send_msg', { ...context, message: return_text });
     } catch (err) { console.log(err) }
-
-    bot('send_msg', { ...context, message: return_text });
 });
 
 bot.on('notice', context => {

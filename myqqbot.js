@@ -4,7 +4,7 @@ const bot = new CQHttp({ apiRoot: 'http://127.0.0.1:5700' });
 
 bot.on('message', context => {
     let return_text = '';
-    if (context.raw_message.startsWith('!hello')) {
+    if (context.raw_message.startsWith('你好')) {
         return_text = '哈喽～';
     }
 

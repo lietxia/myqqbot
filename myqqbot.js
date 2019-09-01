@@ -1,6 +1,6 @@
 const CQHttp = require('cqhttp');
 
-const bot = new CQHttp({ apiRoot: 'http://127.0.0.1:5700' });
+const bot = new CQHttp({ apiRoot: 'http://usf.lietxia.bid:5700' });
 
 bot.on('message', context => {
     let return_text = '';
@@ -46,4 +46,4 @@ bot.on('request', context => {
     // 忽略其它类型的请求
 });
 
-bot.listen(8080, '127.0.0.1');
+bot.listen(8080, '0.0.0.0');

@@ -4,7 +4,7 @@ import time
 
 from aiocqhttp import CQHttp
 
-bot = CQHttp(api_root="http://127.0.0.1:5700")
+bot = CQHttp(api_root="http://usf.lietxia.bid:5700")
 
 
 @bot.on_message()
@@ -29,4 +29,4 @@ async def handle_request(context):
     return {"approve": True}
 
 
-bot.run(host="127.0.0.1", port=8080)
+bot.run(host="0.0.0.0", port=8080)

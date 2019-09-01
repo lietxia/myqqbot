@@ -3,19 +3,16 @@ const CQHttp = require('cqhttp');
 const bot = new CQHttp({ apiRoot: 'http://127.0.0.1:5700' });
 
 bot.on('message', context => {
+    let return_text = '';
     if (context.raw_message.startsWith('!hello')) {
-        bot('send_msg', {
-            ...context,
-            message: '哈喽～'
-        });
-    }
-    if (context.raw_message.startsWith('!nihao')) {
-        bot('send_msg', {
-            ...context,
-            message: '你好～'
-        });
+        return_text = '哈喽～';
     }
 
+    if (context.raw_message.startsWith('今天')) {
+        return_text = '你好～';
+    }
+
+    bot('send_msg', { ...context, message: return_text });
 });
 
 bot.on('notice', context => {

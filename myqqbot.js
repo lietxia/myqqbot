@@ -9,7 +9,14 @@ bot.on('message', context => {
     }
 
     if (context.raw_message.startsWith('今天')) {
-        return_text = new Date().Format("yyyy-MM-dd");
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var day = date.getDate();
+        var hour = date.getHours();
+        var minute = date.getMinutes();
+        var second = date.getSeconds();
+        return_text = year + '年' + month + '月' + day + '日 ' + hour + ':' + minute + ':' + second;
     }
 
     bot('send_msg', { ...context, message: return_text });

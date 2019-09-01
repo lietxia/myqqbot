@@ -9,7 +9,7 @@ bot.on('message', context => {
     }
 
     if (context.raw_message.startsWith('今天')) {
-        return_text = '你好～';
+        return_text = new Date().Format("yyyy-MM-dd");
     }
 
     bot('send_msg', { ...context, message: return_text });

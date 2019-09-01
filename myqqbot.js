@@ -3,10 +3,13 @@ const CQHttp = require('cqhttp');
 const bot = new CQHttp({ apiRoot: 'http://127.0.0.1:5700/' });
 
 bot.on('message', context => {
-    bot('send_msg', {
-        ...context,
-        message: '哈喽～'
-    });
+    if (context.raw_message.startsWith('!hello')) {
+        bot('send_msg', {
+            ...context,
+            message: '哈喽～'
+        });
+    }
+
 });
 
 bot.on('notice', context => {

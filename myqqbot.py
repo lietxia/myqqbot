@@ -1,23 +1,32 @@
-from cqhttp import CQHttp
+#!/usr/bin/python3
+# -*- coding: UTF-8 -*-
+import time
 
-bot = CQHttp(api_root="http://127.0.0.1:5700/")
+from aiocqhttp import CQHttp
+
+bot = CQHttp(api_root="http://127.0.0.1:5700")
 
 
 @bot.on_message()
-def handle_msg(context):
-    bot.send(context, "你好呀，下面一条是你刚刚发的：")
-    return {"reply": context["message"], "at_sender": False}
+async def handle_msg(context):
+    return_text = ""
+    if context["message"] == "你好":
+        return_text = "你也好"
+
+    if context["message"] == "今天":
+        return_text = time.asctime(time.localtime(time.time()))
+    return {"reply": return_text}
 
 
-@bot.on_notice("group_increase")  # 如果插件版本是 3.x，这里需要使用 @bot.on_event
-def handle_group_increase(context):
-    bot.send(context, message="欢迎新人～", auto_escape=True)  # 发送欢迎新人
+@bot.on_notice("group_increase")
+async def handle_group_increase(context):
+    await bot.send(context, message="欢迎新人～", at_sender=True, auto_escape=True)
+    return
 
 
 @bot.on_request("group", "friend")
-def handle_request(context):
-    return {"approve": True}  # 同意所有加群、加好友请求
+async def handle_request(context):
+    return {"approve": True}
 
 
 bot.run(host="127.0.0.1", port=8080)
-

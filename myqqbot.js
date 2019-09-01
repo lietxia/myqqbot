@@ -1,12 +1,18 @@
 const CQHttp = require('cqhttp');
 
-const bot = new CQHttp({ apiRoot: 'http://usf.lietxia.bid:5700/' });
+const bot = new CQHttp({ apiRoot: 'http://127.0.0.1:5700' });
 
 bot.on('message', context => {
     if (context.raw_message.startsWith('!hello')) {
         bot('send_msg', {
             ...context,
             message: '哈喽～'
+        });
+    }
+    if (context.raw_message.startsWith('!nihao')) {
+        bot('send_msg', {
+            ...context,
+            message: '你好～'
         });
     }
 
@@ -43,4 +49,4 @@ bot.on('request', context => {
     // 忽略其它类型的请求
 });
 
-bot.listen(8080, '0.0.0.0');
+bot.listen(8080, '127.0.0.1');

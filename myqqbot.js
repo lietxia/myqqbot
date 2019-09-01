@@ -4,20 +4,23 @@ const bot = new CQHttp({ apiRoot: 'http://usf.lietxia.bid:5700' });
 
 bot.on('message', context => {
     let return_text = '';
-    if (context.raw_message.startsWith('你好')) {
-        return_text = '哈喽～';
-    }
+    try {
+        if (context.raw_message.startsWith('你好')) {
+            return_text = '哈喽～';
+        }
 
-    if (context.raw_message.startsWith('今天')) {
-        var date = new Date();
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var day = date.getDate();
-        var hour = date.getHours();
-        var minute = date.getMinutes();
-        var second = date.getSeconds();
-        return_text = year + '年' + month + '月' + day + '日 ' + hour + ':' + minute + ':' + second;
-    }
+        if (context.raw_message.startsWith('今天')) {
+            var date = new Date();
+            var year = date.getFullYear();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            var hour = date.getHours();
+            var minute = date.getMinutes();
+            var second = date.getSeconds();
+            return_text = year + '年' + month + '月' + day + '日 ' + hour + ':' + minute + ':' + second;
+        }
+
+    } catch (err) { console.log(err) }
 
     bot('send_msg', { ...context, message: return_text });
 });
@@ -33,7 +36,7 @@ bot.on('notice', context => {
             bot('send_group_msg', {
                 group_id: context.group_id,
                 message: `欢迎${name}`
-            }).catch(err => { });
+            }).catch(err => { console.log(err); });
         }).catch(err => { console.log(err); });
     }
     // 忽略其它事件
